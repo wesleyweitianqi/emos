@@ -41,3 +41,18 @@ spring:
       authentication-database: test
       username: admin
       password: wei123
+
+logging:
+  level:
+    root: info
+    generator.mapper: warn
+  pattern:
+    console: "%d{HH:mm:ss}   %-5level  %msg%n"
+
+
+mybatis-plus:
+  config-location: classpath*:mapper/*.xml
+  type-aliases-package: generator.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
