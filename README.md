@@ -31,3 +31,6 @@ db.createUser(
  }
 )
 ```
+#### Mybatis config
+add plugin MybatisX, then connect database and select table to execute mybatisx-generator
+add mybatis and logging level in application.yml
