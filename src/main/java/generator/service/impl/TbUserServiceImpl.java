@@ -6,6 +6,8 @@ import generator.service.TbUserService;
 import generator.mapper.TbUserMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author tianqiwei
 * @description 针对表【tb_user(用户表)】的数据库操作Service实现
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser>
     implements TbUserService{
-
+    
 }
 
 

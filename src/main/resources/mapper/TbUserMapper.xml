@@ -28,4 +28,8 @@
         role,root,dept_id,
         status,create_time
     </sql>
+    <select id="selectList" resultType="generator.domain.TbUser">
+        select *
+        from table ( TbUser )
+    </select>
 </mapper>

@@ -50,8 +50,8 @@ logging:
     console: "%d{HH:mm:ss}   %-5level  %msg%n"
 
 
-mybatis-plus:
-  config-location: classpath*:mapper/*.xml
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: generator.domain
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
