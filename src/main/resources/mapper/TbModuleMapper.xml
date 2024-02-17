@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.TbModuleMapper">
+<mapper namespace="yrs.emos.generator.mapper.TbModuleMapper">
 
-    <resultMap id="BaseResultMap" type="generator.domain.TbModule">
+    <resultMap id="BaseResultMap" type="yrs.emos.generator.domain.TbModule">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="moduleCode" column="module_code" jdbcType="VARCHAR"/>
             <result property="moduleName" column="module_name" jdbcType="VARCHAR"/>

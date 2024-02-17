@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.TbFaceModelMapper">
+<mapper namespace="yrs.emos.generator.mapper.TbFaceModelMapper">
 
-    <resultMap id="BaseResultMap" type="generator.domain.TbFaceModel">
+    <resultMap id="BaseResultMap" type="yrs.emos.generator.domain.TbFaceModel">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="userId" column="user_id" jdbcType="INTEGER"/>
             <result property="faceModel" column="face_model" jdbcType="VARCHAR"/>

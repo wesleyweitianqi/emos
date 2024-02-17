@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.TbDeptMapper">
+<mapper namespace="yrs.emos.generator.mapper.TbDeptMapper">
 
-    <resultMap id="BaseResultMap" type="generator.domain.TbDept">
+    <resultMap id="BaseResultMap" type="yrs.emos.generator.domain.TbDept">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
     </resultMap>

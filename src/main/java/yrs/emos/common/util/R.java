@@ -13,7 +13,7 @@ public class R extends HashMap<String, Object> {
     }
 
     public R put(String key, Object value) {
-        super.put(key, (Objects) value);
+        super.put(key, (Object) value);
         return this;
     }
 
