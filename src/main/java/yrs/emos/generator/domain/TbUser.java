@@ -8,10 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
-/**
- * 用户表
- * @TableName tb_user
- */
+
 @TableName(value ="tb_user")
 @Data
 public class TbUser implements Serializable {

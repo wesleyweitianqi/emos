@@ -1,10 +1,13 @@
 package yrs.emos.generator.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.shiro.crypto.hash.Hash;
 import yrs.emos.generator.domain.TbUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
 * @author tianqiwei
@@ -15,8 +18,11 @@ import java.util.List;
 
 @Mapper
 public interface TbUserMapper extends BaseMapper<TbUser> {
+    public Boolean hasRootUser();
+    public int insert(HashMap param);
+    public Integer searchIdByOpenId(String openId);
 
-    List<TbUser> selectList();
+    public Set<String> searchUserPermissions(Integer id);
 }
 
 
