@@ -16,4 +16,7 @@
         id,param_key,param_value,
         status,remark
     </sql>
+    <select id="selectAllParam" resultType="yrs.emos.generator.domain.SysConfig">
+        select param_key, param_value from sys_config where status = 1;
+    </select>
 </mapper>

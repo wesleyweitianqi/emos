@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter
+@WebFilter(urlPatterns = "/")
 public class XssFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

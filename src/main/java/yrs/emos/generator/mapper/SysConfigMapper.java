@@ -4,6 +4,8 @@ import yrs.emos.generator.domain.SysConfig;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
 * @author tianqiwei
 * @description 针对表【sys_config】的数据库操作Mapper
@@ -12,7 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface SysConfigMapper extends BaseMapper<SysConfig> {
-
+    public List<SysConfig> selectAllParam();
 }
 
 
