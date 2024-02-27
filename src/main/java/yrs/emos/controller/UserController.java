@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private RedisTemplate redisTemplate;
     @Value("${emos.jwt.cache-expire}")
-    private int cacheExpire;
+    private long cacheExpire;
 
     @PostMapping("/register")
     @ApiOperation("register")

@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 @Mapper
 public interface TbWorkdayMapper extends BaseMapper<TbWorkday> {
-
+    public Integer searchTodayIsWorkDay();
 }
 
 

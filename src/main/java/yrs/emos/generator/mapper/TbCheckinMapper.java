@@ -4,6 +4,8 @@ import yrs.emos.generator.domain.TbCheckin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.HashMap;
+
 /**
 * @author tianqiwei
 * @description 针对表【tb_checkin(签到表)】的数据库操作Mapper
@@ -11,7 +13,8 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity generator.domain.TbCheckin
 */
 @Mapper
-public interface TbCheckinMapper extends BaseMapper<TbCheckin> {
+public interface TbCheckinMapper  {
+    public Integer haveCheckin(HashMap param);
 
 }
 

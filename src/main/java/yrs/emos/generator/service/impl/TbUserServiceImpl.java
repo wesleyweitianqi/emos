@@ -73,9 +73,20 @@ public class TbUserServiceImpl implements TbUserService {
                 throw new EmosException("cannot bind admin account");
             }
         }else {
-
+            String openId = getOpenId(code);
+            HashMap param = new HashMap();
+            param.put("openId", openId);
+            param.put("nickname", nickname);
+            param.put("photo", photo);
+            param.put("role", "[]");
+            param.put("status", 1);
+            param.put("createTime", new Date());
+            param.put("root", false);
+            userMapper.insert(param);
+            int id = userMapper.searchIdByOpenId(openId);
+            return id;
         }
-        return 0;
+//        return 0;
     }
 
     @Override
@@ -92,6 +103,12 @@ public class TbUserServiceImpl implements TbUserService {
             throw new EmosException("account not exist");
         }
         return id;
+    }
+
+    @Override
+    public TbUser searchById(Integer userId) {
+        TbUser user = userMapper.searchByIdInt(userId);
+        return user;
     }
 }
 

@@ -23,6 +23,7 @@ public interface TbUserMapper extends BaseMapper<TbUser> {
     public Integer searchIdByOpenId(String openId);
 
     public Set<String> searchUserPermissions(Integer id);
+    public TbUser searchByIdInt(Integer userId);
 }
 
 

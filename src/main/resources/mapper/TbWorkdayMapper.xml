@@ -12,4 +12,7 @@
     <sql id="Base_Column_List">
         id,date
     </sql>
+    <select id="searchTodayIsWorkDay" resultType="java.lang.Integer">
+        select id from tb_workdays where date  = CURRENT_DATA limit 1;
+    </select>
 </mapper>

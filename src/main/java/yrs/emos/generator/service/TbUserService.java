@@ -1,5 +1,6 @@
 package yrs.emos.generator.service;
 
+import io.swagger.models.auth.In;
 import yrs.emos.generator.domain.TbUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -14,5 +15,7 @@ public interface TbUserService  {
     public int registerUser(String registerCode,String code,String nickname,String photo);
     public Set<String> searchUserPermissions(int userId);
     public  Integer login(String code);
+
+    public TbUser searchById(Integer userId);
 
 }

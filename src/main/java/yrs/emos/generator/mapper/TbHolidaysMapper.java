@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 @Mapper
 public interface TbHolidaysMapper extends BaseMapper<TbHolidays> {
-
+    public Integer searchTodayIsHolidays();
 }
 
 

@@ -6,12 +6,14 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Configuration
 public class ShiroConfig {
     @Bean("securityManager")
     public SecurityManager securityManager(Oauth2Realm realm) {
@@ -40,7 +42,7 @@ public class ShiroConfig {
         filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/user/register", "anon");
         filterMap.put("/user/login", "anon");
-        filterMap.put("/test/**", "anon");
+//        filterMap.put("/test/**", "anon");
         filterMap.put("/**", "oauth2");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
         return shiroFilter;

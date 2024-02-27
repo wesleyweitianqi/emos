@@ -77,4 +77,7 @@
                 join tb_permission p on JSON_CONTAINS(r.permissions, CAST(p.id as CHAR))
         where u.id = #{userId} and u. status = 1;
     </select>
+    <select id="searchByIdInt" resultType="yrs.emos.generator.domain.TbUser">
+        select * from tb_user where id = #{userId};
+    </select>
 </mapper>
