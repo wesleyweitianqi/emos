@@ -17,8 +17,8 @@ public class MessageEntity {
     private String uuid;
     @Indexed
     private Integer senderId;
-    private String sendPhoto="https://static-1258386385.cos.ap-beijing.myqcloud.com/img/System.jpg";
-    private String sendName;
+    private String senderPhoto="https://static-1258386385.cos.ap-beijing.myqcloud.com/img/System.jpg";
+    private String senderName;
     private String msg;
     @Indexed
     private Date sendTime;

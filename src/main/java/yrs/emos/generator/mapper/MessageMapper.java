@@ -5,6 +5,8 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONObject;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
@@ -20,7 +22,9 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
+@Slf4j
 public class MessageMapper {
+    @Autowired
     private MongoTemplate mongoTemplate;
 
     public String insert(MessageEntity entity){
@@ -32,22 +36,19 @@ public class MessageMapper {
     }
 
     public List<HashMap> searchMessageByPage(int userId, long start, int length){
-        JSONObject json = new JSONObject();
-        json.set("$toString","$_id");
         Aggregation aggregation = Aggregation.newAggregation(
-                Aggregation.addFields().addField("id").withValue(json).build(),
+                Aggregation.addFields().addField("id").withValue("$toString:$_id").build(),
                 Aggregation.lookup("message_ref", "id", "messageId", "ref"),
                 Aggregation.match(Criteria.where("ref.receiverId").is(userId)),
                 Aggregation.sort(Sort.by(Sort.Direction.DESC, "sendTime")),
                 Aggregation.skip(start),
                 Aggregation.limit(length)
-            );
-
-        AggregationResults<HashMap> results = mongoTemplate.aggregate(aggregation, "message", HashMap.class);
-        List<HashMap> list = results.getMappedResults();
-        list.forEach(one -> {
-            List<MessageRefEntity> refList = (List<MessageRefEntity>) one.get("ref");
-            MessageRefEntity entity = refList.get(0);
+        );
+        AggregationResults<HashMap> results=mongoTemplate.aggregate(aggregation,"message",HashMap.class);
+        List<HashMap> list=results.getMappedResults();
+        list.forEach(one->{
+            List<MessageRefEntity> refList= (List<MessageRefEntity>) one.get("ref");
+            MessageRefEntity entity=refList.get(0);
             boolean readFlag=entity.getReadFlag();
             String refId=entity.get_id();
             one.put("readFlag",readFlag);
@@ -66,7 +67,7 @@ public class MessageMapper {
             }
         });
         return list;
-        };
+    };
 
     public HashMap searchMessageById(String id){
         HashMap map = mongoTemplate.findById(id, HashMap.class, "message");

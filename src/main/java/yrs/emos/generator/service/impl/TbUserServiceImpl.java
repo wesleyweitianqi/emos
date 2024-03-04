@@ -1,5 +1,6 @@
 package yrs.emos.generator.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -9,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import yrs.emos.exception.EmosException;
+import yrs.emos.generator.domain.MessageEntity;
 import yrs.emos.generator.domain.TbUser;
 import yrs.emos.generator.service.TbUserService;
 import yrs.emos.generator.mapper.TbUserMapper;
 import org.springframework.stereotype.Service;
+import yrs.emos.task.MessageTask;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -34,6 +37,9 @@ public class TbUserServiceImpl implements TbUserService {
 
     @Autowired
     private TbUserMapper userMapper;
+
+    @Autowired
+    private MessageTask messageTask;
 
     private String getOpenId(String code) {
         String url = "https://api.weixin.qq.com/sns/jscode2session";
@@ -68,23 +74,19 @@ public class TbUserServiceImpl implements TbUserService {
                 param.put("root", true);
                 userMapper.insert(param);
                 int id = userMapper.searchIdByOpenId(openId);
+                MessageEntity entity = new MessageEntity();
+                entity.setSenderId(0);
+                entity.setSenderName("system messge");
+                entity.setSendTime(new Date());
+                entity.setUuid(IdUtil.simpleUUID());
+                entity.setMsg("welcome to register as admin, please update profile");
+                messageTask.sendAsync(id+"", entity);
                 return id;
             }else {
                 throw new EmosException("cannot bind admin account");
             }
         }else {
-            String openId = getOpenId(code);
-            HashMap param = new HashMap();
-            param.put("openId", openId);
-            param.put("nickname", nickname);
-            param.put("photo", photo);
-            param.put("role", "[]");
-            param.put("status", 1);
-            param.put("createTime", new Date());
-            param.put("root", false);
-            userMapper.insert(param);
-            int id = userMapper.searchIdByOpenId(openId);
-            return id;
+            throw new EmosException("cannot obtain admin");
         }
 //        return 0;
     }
@@ -102,6 +104,7 @@ public class TbUserServiceImpl implements TbUserService {
         if(id == null ){
             throw new EmosException("account not exist");
         }
+        messageTask.receiveAsync(id+"");
         return id;
     }
 
